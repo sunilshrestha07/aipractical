@@ -1,0 +1,25 @@
+from sklearn import preprocessing
+study_hours= [&#39;Low&#39;, &#39;Medium&#39;, &#39;High&#39;,&#39;Low&#39;]
+attendance= [&#39;Poor&#39;, &#39;Good&#39;, &#39;Excellent&#39;,&#39;Excellent&#39;]
+extracurricular=  [&#39;Yes&#39;, &#39;No&#39;,&#39;Yes&#39;,&#39;No&#39;]
+performance= [&#39;Pass&#39;, &#39;Fail&#39;]
+le = preprocessing.LabelEncoder() #Encode target labels with value
+s = le.fit_transform(study_hours)
+a = le.fit_transform(attendance)
+e = le.fit_transform(extracurricular)
+p= le.fit_transform(performance)
+features=zip(s,a,e,p)
+inp = list(features)
+print (&quot;Input data: &quot;)
+print(inp)
+print(&quot;Actual Output: &quot;)
+print(p)
+from sklearn.naive_bayes import GaussianNB
+model = GaussianNB()
+model.fit(inp,p)
+predicted = model.predict([[1,2,1,1]])
+print (&quot;Predicted calue is: &quot;, predicted)
+if(predicted==1):
+    print(&quot;Student will Pass: Yes&quot;)
+else:
+    print(&quot;Student will Pass: No&quot;)
